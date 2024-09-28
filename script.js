@@ -4,7 +4,7 @@ const chatList = document.querySelector(".chat-list");
 let userMessage = null;
 
 //API configuration
-const API_KEY = "";
+const API_KEY = "AIzaSyAPhS8H_7E6y-oVnMUWq1VXaFzsbRUKkf0";
 const API_URL =`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
 
 // Create a new message element and return it
@@ -13,6 +13,22 @@ const createMessageElement = (content, ...classes) => {
     div.classList.add("message", ...classes);
     div.innerHTML = content;
     return div;
+}
+
+//show typing effect by displaying words one by one
+const showTypingEffect = (text, textElement) => {
+    const words = text.split(' ');
+    let currentWordIndex = 0;
+
+    const typingInterval = setInterval(() => {
+        //append each word to the text element with a spase
+        textElement.innerText += (currentWordIndex === 0 ? '' : ' ') + words[currentWordIndex++];
+
+        //if all words are displayed
+        if(currentWordIndex === words.length) {
+            clearInterval(typingInterval);
+        }
+    }, 75);
 }
 
 // Fetch response from the API based on user message
@@ -34,8 +50,9 @@ const generateAPIResponse = async (incomingMessageDiv) => {
 
     const data = await response.json();
 
+    //get the api response text
     const apiResponse = data?.candidates[0].content.parts[0].text;
-    textElement.innerHTML = apiResponse;
+    showTypingEffect(apiResponse, textElement);
     } catch (error) {
         console.log(error);
     } finally{
