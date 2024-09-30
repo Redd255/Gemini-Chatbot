@@ -42,9 +42,13 @@ body {
 }
 
 .header {
-    /* margin-top: 7vh; */
+    margin-top: 7vh;
     padding: 1rem;
-    display: none;
+}
+
+body.hide-header .header{
+    display: none;    
+    margin-top: 0;
 }
 
 .header :where(.title, .subtitle){
@@ -56,7 +60,7 @@ body {
     font-size: 2.7rem;
     width: fit-content;
     background-clip: text;
-    background: linear-gradient(to right, #4285f4, #d96570);
+    background: linear-gradient(to right, #0062ff, #003cff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -66,7 +70,7 @@ body {
     color: var(--subheading-color);
 }
 
-.Suggestion-list{
+.suggestion-list{
     margin-top: 9.5vh;
     list-style: none;
     display: flex;
@@ -75,7 +79,7 @@ body {
     scrollbar-width: none;
 }
 
-.Suggestion-list .Suggestion {
+.suggestion-list .suggestion {
     padding: 1.25rem;
     cursor: pointer;
     width: 227px;
@@ -88,15 +92,15 @@ body {
     background: var(--secondary-color);
 }
 
-.Suggestion-list .Suggestion:hover {
+.suggestion-list .suggestion:hover {
     background: var(--secondary-hover-color);
 }
 
-.Suggestion-list .Suggestion .text{
+.suggestion-list .suggestion .text{
     font-weight: 400;
 }
 
-.Suggestion-list .Suggestion .icon {
+.suggestion-list .suggestion .icon {
     height: 42px;
     width: 42;
     font-size: 1.3rem;
