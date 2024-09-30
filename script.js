@@ -75,13 +75,15 @@ const generateAPIResponse = async (incomingMessageDiv) => {
         });
 
     const data = await response.json();
+    if(!response.ok) throw new Error(data.error.message);
 
     //get the api response text
     const apiResponse = data?.candidates[0].content.parts[0].text.replace(/\*\*(.*?)\*\*/g, '$1');
     showTypingEffect(apiResponse, textElement, incomingMessageDiv);
     } catch (error) {
         isResponseGenerating = false;
-        console.log(error);
+        textElement.innerText = error.message;
+        textElement.classList.add("error");
     } finally{
         incomingMessageDiv.classList.remove("loading");
     }

@@ -152,6 +152,11 @@ body.hide-header .header{
     color: var(--text-color);
 }
 
+.chat-list .message .text.error{
+    color: #e55865;
+}
+
+
 .chat-list .message.loading .text{
     display: none;
 }
